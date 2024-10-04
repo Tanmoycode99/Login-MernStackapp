@@ -10,7 +10,7 @@ function RegisterForm({ onClose, onSwitchToLogin }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.post('http://localhost:8000/register', { name, email, password })
+    axios.post('https://login-mern-stackapp.vercel.app/register', { name, email, password })
       .then(result => {
         console.log(result);
 
