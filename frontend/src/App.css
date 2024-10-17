@@ -82,6 +82,9 @@
     background: transparent;
     border: 2px solid white;
     border-radius: 6px;
+    border-top: none;
+    border-left: none;
+    border-right: none;
     border-color: none;
 
 
@@ -100,7 +103,9 @@
   }
 
   .login-form p a{
-    color: white;
+    margin-left: 20px;
+    color: rgb(255, 64, 0);
+    text-decoration: none;
   }
 
 
@@ -165,6 +170,9 @@
   background: transparent;
   border: 2px solid white;
   border-radius: 6px;
+  border-top: none;
+  border-left: none;
+  border-right: none;
   border-color: none;
 
 
@@ -173,6 +181,7 @@
 .register-form h2{
   margin-left: 85px;
   margin-bottom: 75px;
+
 }
 
 
@@ -192,8 +201,9 @@
 
 .register-form p a{
   position: relative;
-  color: white;
+  color: rgb(255, 64, 0);
   left: 30px;
+  text-decoration: none;
 }
 
 
@@ -259,7 +269,7 @@
 .clock1{
   color: white;
   font-size: 0.8em;
-  margin-left: 85px;
+  margin-left: 45px;
   
 }
 
@@ -268,6 +278,87 @@
   color: rgb(255, 64, 0);
   font-size: 2.5em;
   margin-left: 20px;
+}
+
+.pwlendiv{
+
+
+   width: 400px;
+   height: 130px;
+   color: white;
+   border: 1.5px solid white;
+   margin-left: 35%;
+   margin-top: 10%;
+   border-radius: 3px;
+
+}
+
+.pwlendiv h5{
+
+  margin-left: 38px;
+  margin-top: 15px;
+
+}
+
+.closepw{
+  color: white;
+  background: transparent;
+  font-size: 1.7em;
+  margin-left: 10px;
+  cursor: pointer;
+  border: none;
+}
+
+
+.pwlendiv span{
+  position: relative;
+  font-size: 20px;
+  top: 7px;
+
+}
+
+
+
+.pwlendivuser{
+
+  width: 400px;
+  height: 130px;
+  color: white;
+  border: 1.5px solid white;
+  margin-left: 35%;
+  margin-top: 10%;
+  border-radius: 3px;
+
+}
+
+
+.pwlendivuser h5{
+
+  font-size: 1em;
+  margin-left: 78px;
+  margin-top: 20px;
+
+}
+
+
+.regsuccess{
+
+  width: 400px;
+  height: 130px;
+  color: white;
+  border: 1.5px solid white;
+  margin-left: 35%;
+  margin-top: 10%;
+  border-radius: 3px;
+
+}
+
+.regsuccess h5{
+
+  font-size: 1.3em;
+  margin-left: 70px;
+  margin-top: 20px;
+
 }
 
 

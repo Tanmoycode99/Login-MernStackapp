@@ -3,29 +3,32 @@ import { X } from 'lucide-react';
 import RegisterForm from './RegisterForm';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import PasswordLenErr from './PasswordLenErr'; 
+import IncorrectUserPw from './IncorrectUserPw';
 
 function Login() {
-  const [showLoginForm, setShowLoginForm] = useState(false);
+  const [showLoginForm, setShowLoginForm] = useState(false); 
   const [showRegisterForm, setShowRegisterForm] = useState(false);
-
+  const [showPasswordLenErr, setShowPasswordLenErr] = useState(false);
+  const [showIncorrectUser, setShowIncorrectUser] = useState(false);
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const navigate = useNavigate(); 
 
   const handleLoginClick = () => {
     setShowLoginForm(!showLoginForm);
     setShowRegisterForm(false);
   };
 
-
   const onCloseLogin = () => {
     setShowLoginForm(false);
   };
 
-  
   const handleRegisterClick = (e) => {
     e.preventDefault(); 
     setShowLoginForm(false);
     setShowRegisterForm(true);
   };
-
 
   const handleSwitchToLogin = (e) => {
     e.preventDefault();
@@ -33,30 +36,27 @@ function Login() {
     setShowLoginForm(true);
   };
 
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const navigate = useNavigate(); 
-
- 
   const handleSubmitform = (e) => {
     e.preventDefault();
-    
+    if (password.length < 6) {
+      setShowLoginForm(false);
+      setShowPasswordLenErr(true);
+      setUsername('');
+      setPassword('');
+      return;
+    }
+
     axios.post('http://localhost:8000/login', { username, password })
       .then(result => {
         console.log(result);
         if (result.data === "Success") {
-        
           setShowLoginForm(false);
           navigate('/home');
-        }else{
-          alert("Incorrect Username or Password")
-
-        // Clear the form fields
-        setUsername('');
-        setPassword('');
-
-
-
+        } else {
+          setShowLoginForm(false);
+          setShowIncorrectUser(true);
+          setUsername('');
+          setPassword('');
         }
       })
       .catch(err => {
@@ -64,15 +64,25 @@ function Login() {
       });
   };
 
+  const handleClosePasswordLenErr = () => {
+    setShowPasswordLenErr(false);
+    setShowLoginForm(true);
+  };
+
+  const handleCloseIncorrectpw = () => {
+    setShowIncorrectUser(false);
+    setShowLoginForm(true);
+  };
+
+
+
   return (
     <>
       <div>
-   
         <button onClick={handleLoginClick} className='btn-1'>
           {showLoginForm || showRegisterForm ? 'Login' : 'Login'}
         </button>
 
-  
         {showLoginForm && (
           <div className="login-container">
             <button className='close1' onClick={onCloseLogin}>
@@ -108,20 +118,22 @@ function Login() {
           </div>
         )}
 
-    
         {showRegisterForm && (
           <RegisterForm onClose={() => setShowRegisterForm(false)} onSwitchToLogin={handleSwitchToLogin} />
         )}
+
+        {showPasswordLenErr && (
+          <PasswordLenErr onClose={handleClosePasswordLenErr} /> 
+        )}
+
+      {showIncorrectUser && (
+          <IncorrectUserPw onClose={handleCloseIncorrectpw} /> 
+        )}
+
+
       </div>
     </>
   );
 }
 
 export default Login;
-
-
-
-
-
-
-
